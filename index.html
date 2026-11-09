@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;600&family=Special+Elite&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=14" />
+</head>
+<body>
+  <header class="top-bar">
+    <button class="top-icon" aria-label="close">&#10005;</button>
+    <h1>My Portfolio</h1>
+    <button class="top-icon" aria-label="more">...</button>
+  </header>
+
+  <main>
+    <!-- ============ 首屏：拼贴 ============ -->
+    <section id="home" class="hero">
+      <nav class="side-nav">
+        <a href="#home" class="side-link is-active"><span>HOME</span><em>主页</em></a>
+        <a href="#skills" class="side-link"><span>SKILLS</span><em>能力</em></a>
+        <a href="#works" class="side-link"><span>WORKS</span><em>作品集</em></a>
+        <p class="side-music">&#9836;</p>
+      </nav>
+
+      <div class="hero-canvas reveal">
+        <img class="card card-1 draggable" src="assets/stickers/clipnote.jpg" alt="拼贴图片1" data-rotate="-5" data-depth="1" draggable="false" />
+        <img class="card card-2 draggable" src="assets/stickers/houses.jpg" alt="拼贴图片2" data-rotate="4" data-depth="2" draggable="false" />
+        <img class="card card-3 draggable" src="assets/stickers/cats.jpg" alt="拼贴图片3" data-rotate="6" data-depth="2" draggable="false" />
+        <img class="card card-4 draggable" src="assets/stickers/center.png" alt="拼贴图片4" data-rotate="-2" data-depth="3" draggable="false" />
+        <img class="card card-5 draggable" src="assets/stickers/stamps.jpg" alt="拼贴图片5" data-rotate="-8" data-depth="1" draggable="false" />
+        <img class="card card-6 draggable" src="assets/stickers/clips.jpg" alt="拼贴图片6" data-rotate="-3" data-depth="2" draggable="false" />
+        <p class="hand-title">My Portfolio</p>
+      </div>
+    </section>
+
+    <!-- ============ vibe / coding ============ -->
+    <section class="keywords">
+      <article class="kw-row reveal">
+        <div class="kw-main">
+          <div class="kw-pink"></div>
+          <h2>* vibe *</h2>
+          <div class="kw-pink"></div>
+        </div>
+      </article>
+      <article class="kw-row reveal">
+        <div class="kw-main">
+          <div class="kw-pink"></div>
+          <h2>* coding *</h2>
+          <div class="kw-pink"></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ 个人能力入口（点击打开弹层） ============ -->
+    <section id="skills" class="entry-section reveal">
+      <div class="entry-card" data-modal="skillsModal" data-interactive>
+        <div class="entry-left">
+          <span class="entry-num">01</span>
+          <span class="entry-tag">SKILLS</span>
+        </div>
+        <div class="entry-mid">
+          <h3 class="entry-title">个人能力展示</h3>
+          <p class="entry-desc">简历 · 技能 · 过往项目 · 经历</p>
+        </div>
+        <div class="entry-right">
+          <span class="entry-arrow">→</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 摄影作品入口（点击打开弹层） ============ -->
+    <section id="works" class="entry-section reveal">
+      <div class="entry-card entry-card--film" data-modal="worksModal" data-interactive>
+        <div class="entry-left">
+          <span class="entry-num">02</span>
+          <span class="entry-tag">WORKS</span>
+        </div>
+        <div class="entry-mid">
+          <h3 class="entry-title">摄影作品 · 胶卷集</h3>
+          <p class="entry-desc">Film Photography · 35mm</p>
+        </div>
+        <div class="entry-right">
+          <span class="entry-arrow">→</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 关于我（已移除） ============ -->
+  </main>
+
+  <!-- ============================================================
+       弹层 1：个人能力 / 简历
+       ============================================================ -->
+  <div class="modal" id="skillsModal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="关闭">&#10005;</button>
+
+      <div class="modal-content">
+        <header class="modal-head">
+          <span class="modal-kicker">01 / SKILLS</span>
+          <h2 class="modal-title">个人能力展示</h2>
+          <p class="modal-sub">尹玉雯 · 数据科学与大数据技术 · 西南财经大学</p>
+          <div class="resume-contact">
+            <span>电话 15704527366</span>
+            <span>邮箱 15704527366@163.com</span>
+            <span>中共党员</span>
+          </div>
+        </header>
+
+        <!-- 核心技能 -->
+        <div class="resume-block">
+          <h3 class="block-h">核心技能</h3>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-name"><span>Python 数据分析</span><span class="skill-pct">92%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="92"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>R 语言</span><span class="skill-pct">88%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="88"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>Matlab</span><span class="skill-pct">82%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="82"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>SPSS</span><span class="skill-pct">65%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="65"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>统计建模</span><span class="skill-pct">90%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="90"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>机器学习 / 深度学习</span><span class="skill-pct">85%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="85"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>数据可视化</span><span class="skill-pct">86%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="86"></span></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><span>学术写作</span><span class="skill-pct">84%</span></div>
+              <div class="skill-bar"><span class="skill-fill" data-width="84"></span></div>
+            </div>
+          </div>
+
+          <div class="skill-tags">
+            <span class="s-tag">Python</span>
+            <span class="s-tag">R</span>
+            <span class="s-tag">Matlab</span>
+            <span class="s-tag">SPSS</span>
+            <span class="s-tag">PyTorch</span>
+            <span class="s-tag">Pandas</span>
+            <span class="s-tag">Scrapy</span>
+            <span class="s-tag">FinBERT</span>
+            <span class="s-tag">iTransformer</span>
+            <span class="s-tag">数据可视化</span>
+          </div>
+        </div>
+
+        <!-- 教育背景 -->
+        <div class="resume-block">
+          <h3 class="block-h">教育背景</h3>
+          <div class="edu-card">
+            <div class="edu-main">
+              <h4>西南财经大学 · 数据科学与大数据技术</h4>
+              <p>2023.09 — 2027.06 · 统计与数据科学学院</p>
+              <p class="edu-note">已保研至华东师范大学统计学院 · 应用统计专业</p>
+            </div>
+            <div class="edu-stats">
+              <span><b>1/77</b>专业排名</span>
+              <span><b>89.94</b>加权成绩</span>
+              <span><b>600 / 539</b>CET4 / CET6</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 科研项目 -->
+        <div class="resume-block">
+          <h3 class="block-h">科研项目</h3>
+          <div class="past-grid">
+            <article class="past-card">
+              <div class="past-cover" style="background:linear-gradient(135deg,#f4e4e4,#e9c9c9)"></div>
+              <div class="past-info">
+                <h4>金融情绪量化与传导分析</h4>
+                <p>2025.09 — 至今 · 实验室特色项目</p>
+                <p class="past-desc">FinBERT + 多智能体框架，Python 爬取多源财经文本，构建 10 万+ 标注语料与市场情绪指数。</p>
+              </div>
+            </article>
+            <article class="past-card">
+              <div class="past-cover" style="background:linear-gradient(135deg,#cfe3f0,#a8d0e6)"></div>
+              <div class="past-info">
+                <h4>碳价预测与多因素交互机制</h4>
+                <p>2026.02 — 2026.05 · 大创省级立项</p>
+                <p class="past-desc">PyTorch 搭建 iTransformer 时序模型，对比 LSTM/MLP/KNN，经 DM、MCS 检验验证优势。</p>
+              </div>
+            </article>
+            <article class="past-card">
+              <div class="past-cover" style="background:linear-gradient(135deg,#fff3b0,#ffe08a)"></div>
+              <div class="past-info">
+                <h4>耐心资本、ESG 与企业韧性</h4>
+                <p>2026.03 — 2026.06 · 实证研究</p>
+                <p class="past-desc">A 股 2016—2023 面板数据，中介效应、Bootstrap 与 FDR 校正，识别 ESG 与数字化通道差异。</p>
+              </div>
+            </article>
+            <article class="past-card past-card--click" data-modal="awardsModal">
+              <div class="past-cover past-cover--award">
+                <span class="past-badge">获奖情况</span>
+              </div>
+              <div class="past-info">
+                <h4>竞赛获奖情况</h4>
+                <p>5 项竞赛奖项</p>
+                <p class="past-desc">统计建模、计算机设计、市场调查、数学建模、英语竞赛等国家级与省级奖项。</p>
+                <span class="past-link">点击查看奖项罗列 →</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- 竞赛作品：仅展示完整图片 -->
+          <div class="work-showcase">
+            <img src="assets/work/page01.jpg" alt="竞赛作品《真人 or 虚拟，谁才是社交媒体 Superstar？》" />
+          </div>
+        </div>
+
+        <!-- 学生工作 -->
+        <div class="resume-block">
+          <h3 class="block-h">学生工作</h3>
+          <ul class="timeline">
+            <li>
+              <span class="tl-year">2026.09 — 2027.06</span>
+              <span class="tl-dot"></span>
+              <div class="tl-body">
+                <strong>统计与数据科学学院本科生第二党支部 · 组织委员</strong>
+                <p>负责支部组织建设与党员活动组织</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2023.09 — 至今</span>
+              <span class="tl-dot"></span>
+              <div class="tl-body">
+                <strong>数据科学与大数据技术一班 · 学习委员</strong>
+                <p>负责班级学习事务与学业互助</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2024.09 — 2025.07</span>
+              <span class="tl-dot"></span>
+              <div class="tl-body">
+                <strong>西南财经大学数学建模协会 · 学术部部员</strong>
+                <p>参与建模培训与学术活动组织</p>
+              </div>
+            </li>
+            <li>
+              <span class="tl-year">2023.09 — 2024.06</span>
+              <span class="tl-dot"></span>
+              <div class="tl-body">
+                <strong>统计与数据科学学院团委学生会 · 学创部部员</strong>
+                <p>协助学院学术创新类活动开展</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 荣誉 -->
+        <div class="resume-block">
+          <h3 class="block-h">奖励荣誉</h3>
+          <ul class="award-list">
+            <li>
+              <span class="award-level award-level--honor">奖学金</span>
+              <div class="award-body"><strong>国家奖学金</strong><p>2025 — 2026 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">奖学金</span>
+              <div class="award-body"><strong>科研创新奖学金</strong><p>2025 — 2026 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">奖学金</span>
+              <div class="award-body"><strong>创新创业奖学金</strong><p>2024 — 2025 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">奖学金</span>
+              <div class="award-body"><strong>社会工作与志愿服务奖学金</strong><p>2023 — 2024 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">荣誉称号</span>
+              <div class="award-body"><strong>光华学子贡献奖</strong><p>2024 — 2025 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">荣誉称号</span>
+              <div class="award-body"><strong>校三好学生</strong><p>2023 — 2024 学年</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">荣誉称号</span>
+              <div class="award-body"><strong>校优秀共青团干部</strong><p>2024</p></div>
+            </li>
+            <li>
+              <span class="award-level award-level--honor">荣誉称号</span>
+              <div class="award-body"><strong>校优秀共青团员</strong><p>2023</p></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       弹层 4：获奖情况
+       ============================================================ -->
+  <div class="modal" id="awardsModal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-panel modal-panel--proof" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="关闭">&#10005;</button>
+
+      <div class="modal-content">
+        <header class="modal-head">
+          <span class="modal-kicker">AWARDS</span>
+          <h2 class="modal-title">获奖情况</h2>
+        </header>
+
+        <div class="resume-block">
+          <h3 class="block-h">竞赛奖项</h3>
+          <ul class="award-list">
+            <li>
+              <span class="award-level award-level--nat">国家级三等奖</span>
+              <div class="award-body">
+                <strong>全国大学生统计建模大赛</strong>
+                <p>2026.03 — 2026.06</p>
+              </div>
+            </li>
+            <li>
+              <span class="award-level award-level--nat">国家级二等奖</span>
+              <div class="award-body">
+                <strong>中国大学生计算机设计大赛</strong>
+                <p>2026.01 — 2026.05</p>
+              </div>
+            </li>
+            <li>
+              <span class="award-level award-level--prov">省级一等奖</span>
+              <div class="award-body">
+                <strong>全国大学生市场调查与分析大赛</strong>
+                <p>2024.11 — 2025.03</p>
+              </div>
+            </li>
+            <li>
+              <span class="award-level award-level--prov">省级二等奖</span>
+              <div class="award-body">
+                <strong>全国大学生数学建模竞赛</strong>
+                <p>2025.11</p>
+              </div>
+            </li>
+            <li>
+              <span class="award-level award-level--nat">国家级三等奖</span>
+              <div class="award-body">
+                <strong>全国大学生英语竞赛</strong>
+                <p>2024.05</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       弹层 2：摄影作品 / 胶卷
+       ============================================================ -->
+  <div class="modal" id="worksModal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-panel modal-panel--film" role="dialog" aria-modal="true">
+      <button class="modal-close modal-close--light" data-close aria-label="关闭">&#10005;</button>
+
+      <div class="film-grain"></div>
+
+      <div class="modal-content">
+        <header class="modal-head modal-head--light">
+          <span class="modal-kicker">02 / WORKS</span>
+          <h2 class="modal-title">摄影作品 · 胶卷集</h2>
+          <p class="modal-sub">Shot on 35mm film · 照片存放于 assets/photography/</p>
+        </header>
+
+        <!-- 横向滚动的胶卷：把照片放进 assets/photography/photo01.jpg ~ photo10.jpg 即可替换 -->
+        <div class="film-track">
+          <div class="film-row">
+            <figure class="film-frame">
+              <img src="assets/photography/photo01.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=deer%20in%20misty%20forest%2C%2035mm%20film%20photography%2C%20soft%20natural%20light%2C%20film%20grain%2C%20muted%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 01" />
+              <span class="film-date">2026.03 · 14:20</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo02.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=forest%20path%20with%20sunlight%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20muted%20green%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 02" />
+              <span class="film-date">2026.02 · 16:05</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo03.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=car%20interior%20view%20of%20mountain%20road%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 03" />
+              <span class="film-date">2026.01 · 17:45</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo04.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=green%20hills%20and%20blue%20sky%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20light%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 04" />
+              <span class="film-date">2025.12 · 09:10</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo05.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=misty%20lake%20and%20mountains%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20muted%20blue%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 05" />
+              <span class="film-date">2025.11 · 15:30</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo06.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=old%20town%20alley%20with%20stone%20wall%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 06" />
+              <span class="film-date">2025.10 · 11:05</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo07.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ocean%20waves%20from%20above%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20blue%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 07" />
+              <span class="film-date">2025.08 · 10:00</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo08.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=city%20street%20at%20golden%20hour%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 08" />
+              <span class="film-date">2025.06 · 17:45</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo09.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cherry%20blossom%20tree%20against%20sky%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20pink%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 09" />
+              <span class="film-date">2025.04 · 10:00</span>
+            </figure>
+            <figure class="film-frame">
+              <img src="assets/photography/photo10.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=field%20of%20wildflowers%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20light%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 10" />
+              <span class="film-date">2025.03 · 08:30</span>
+            </figure>
+          </div>
+        </div>
+
+        <!-- 底部底片条装饰 -->
+        <div class="film-negative" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js?v=14"></script>
+</body>
+</html>
