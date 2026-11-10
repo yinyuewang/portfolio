@@ -121,39 +121,46 @@
   }
 
   /* ============================================================
-     3. 入口卡片：鼠标轻微倾斜
+     3. 时钟：枝桠两臂按真实时间绕轴心转动
      ============================================================ */
-  function initEntryTilt() {
-    $$(".entry-card").forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.setProperty("--ry", x * 4 + "deg");
-        card.style.setProperty("--rx", -y * 4 + "deg");
-      });
+  function initClock() {
+    const hour = document.querySelector(".hand-hour");
+    const minute = document.querySelector(".hand-minute");
+    if (!hour || !minute) return;
 
-      card.addEventListener("mouseleave", () => {
-        card.style.setProperty("--ry", "0deg");
-        card.style.setProperty("--rx", "0deg");
-      });
-    });
+    // 手臂图里枝桠本身的指向角（从 12 点顺时针），旋转时减去这个偏移
+    const HOUR_OFFSET = 307.0;
+    const MIN_OFFSET = 56.85;
+
+    const tick = () => {
+      const now = new Date();
+      const s = now.getSeconds() + now.getMilliseconds() / 1000;
+      const m = now.getMinutes() + s / 60;
+      const h = (now.getHours() % 12) + m / 60;
+
+      hour.style.transform = `rotate(${h * 30 - HOUR_OFFSET}deg)`;
+      minute.style.transform = `rotate(${m * 6 - MIN_OFFSET}deg)`;
+    };
+
+    tick();
+    setInterval(tick, 1000);
   }
 
   /* ============================================================
-     3.5 摄影图：本地文件优先，缺失时用网络图兜底
+     4. 照片：本地文件优先，缺失时用网络图兜底
      ============================================================ */
-  function initFilmFallback() {
-    $$(".film-frame img").forEach((img) => {
+  function initImageFallback() {
+    $$(".film-frame img, .life-shot img").forEach((img) => {
       const fallback = img.dataset.fallback;
       img.addEventListener("error", () => {
-        if (fallback && !img.src.includes(fallback)) {
+        if (fallback && img.src !== fallback) {
           img.src = fallback;
           return;
         }
         img.removeAttribute("src");
-        img.style.background =
-          "repeating-linear-gradient(135deg,#232323,#232323 8px,#2b2b2b 8px,#2b2b2b 16px)";
+        img.style.background = img.closest(".life-shot")
+          ? "repeating-linear-gradient(135deg,#efece7,#efece7 8px,#e7e3dc 8px,#e7e3dc 16px)"
+          : "repeating-linear-gradient(135deg,#232323,#232323 8px,#2b2b2b 8px,#2b2b2b 16px)";
       });
     });
   }
@@ -162,7 +169,7 @@
      4. 导航高亮 + 平滑滚动
      ============================================================ */
   function initNav() {
-    const links = $$(".side-link");
+    const links = $$(".side-link:not([data-modal])");
     const sections = $$("main section[id]");
 
     const setActive = (id) => {
@@ -200,8 +207,8 @@
   document.addEventListener("DOMContentLoaded", () => {
     initCollage();
     initModals();
-    initEntryTilt();
-    initFilmFallback();
+    initClock();
+    initImageFallback();
     initNav();
   });
 })();
