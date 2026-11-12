@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  font-family: "Archivo", "Noto Sans SC", sans-serif;
+  font-family: "Archivo", "PingFang SC", "Microsoft YaHei", sans-serif;
   background: radial-gradient(circle at 85% 12%, #ffffff 0%, var(--bg) 42%, #f6f5f1 100%);
   color: var(--ink);
   min-height: 100vh;
@@ -1181,8 +1181,7 @@ main {
 }
 
 .modal-panel--notes {
-  --note-font: "Smiley Sans", "SmileySans-Oblique", "Yuanti SC", "YouYuan", "幼圆",
-    "PingFang SC", "Microsoft YaHei", sans-serif;
+  --note-font: "Yuanti SC", "YouYuan", "幼圆", "PingFang SC", "Microsoft YaHei", sans-serif;
   width: min(600px, 94vw);
   aspect-ratio: 1080 / 1516;
   padding: 96px 30px 96px;
@@ -1191,6 +1190,12 @@ main {
   background-position: center top;
   border-radius: 24px;
   font-family: var(--note-font);
+}
+
+/* 得意黑只在真正打开留言弹层时才加载，避免首屏下载 1.1MB 字体 */
+.modal.open .modal-panel--notes {
+  --note-font: "Smiley Sans", "Yuanti SC", "YouYuan", "幼圆", "PingFang SC", "Microsoft YaHei",
+    sans-serif;
 }
 
 .modal-panel--notes .modal-close {

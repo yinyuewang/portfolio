@@ -1,0 +1,6 @@
+/* 本地字体：避免国内访问 Google Fonts 卡住 */
+@font-face{font-family:'Archivo';font-style:normal;font-weight:300;font-display:swap;src:url('../assets/fonts/Archivo-300.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/Archivo-400.woff2') format('woff2');}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:600;font-display:swap;src:url('../assets/fonts/Archivo-600.woff2') format('woff2');}
+@font-face{font-family:'Shadows Into Light';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/ShadowsIntoLight-400.woff2') format('woff2');}
+@font-face{font-family:'Special Elite';font-style:normal;font-weight:400;font-display:swap;src:url('../assets/fonts/SpecialElite-400.woff2') format('woff2');}
