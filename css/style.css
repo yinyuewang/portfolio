@@ -394,38 +394,41 @@ main {
   }
 }
 
-/* 窄屏：插画改为表盘下方一条小图排 */
+/* 窄屏：六张水彩贴纸分列表盘左右各三张 */
 @media (max-width: 899px) {
   .clock-stage {
-    flex-direction: column;
-    align-items: center;
     width: 100%;
   }
 
   .clock-gallery {
-    position: static;
-    order: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 16px;
+    position: absolute;
+    inset: 0;
+    order: 0;
+    display: block;
+    width: auto;
+    margin: 0;
+  }
+
+  .clock-wrap {
+    width: min(520px, 62vw);
   }
 
   .gallery-img {
-    position: static;
-    width: 15.5%;
+    position: absolute;
     height: auto;
-    margin: 0 -1.2%;
+    margin: 0;
     filter: drop-shadow(0 6px 10px rgba(120, 110, 110, 0.14));
   }
 
-  .g-teapot { transform: rotate(-5deg); }
-  .g-pancakes { transform: rotate(5deg); }
-  .g-heart { transform: rotate(-8deg); }
-  .g-apple { transform: rotate(7deg); }
-  .g-piano { transform: rotate(-3deg); }
-  .g-coffee { transform: rotate(4deg); }
+  /* 左列 */
+  .g-teapot { left: 0; top: 2%; width: 20%; transform: rotate(-6deg); }
+  .g-heart { left: 0; top: 35%; width: 20%; transform: rotate(-9deg); }
+  .g-piano { left: 0; top: 66%; width: 19%; transform: rotate(-4deg); }
+
+  /* 右列 */
+  .g-pancakes { right: 0; top: 1%; width: 20%; transform: rotate(6deg); }
+  .g-apple { right: 0; top: 35%; width: 20%; transform: rotate(8deg); }
+  .g-coffee { right: 0; top: 66%; width: 20%; transform: rotate(4deg); }
 }
 
 /* 枝桠指针：抠出的手臂图片，transform-origin 指向轴心 (270,468) */
@@ -1673,7 +1676,7 @@ main {
 
   .kw-pink { width: 56px; height: 92px; }
 
-  .clock-wrap { width: min(430px, 92vw); }
+  .clock-wrap { width: min(430px, 62vw); }
   .item-label { font-size: 11px; letter-spacing: 1.2px; }
 
   .life-wall { grid-template-columns: repeat(2, 1fr); gap: 18px 16px; }
