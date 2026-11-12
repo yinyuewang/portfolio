@@ -308,16 +308,16 @@ main {
 
 .g-teapot {
   left: 3%;
-  top: 5%;
-  width: 22%;
+  top: 9%;
+  width: 24%;
   transform: rotate(-5deg);
   animation-delay: 0.2s;
 }
 
 .g-pancakes {
   right: 3%;
-  top: 4%;
-  width: 22%;
+  top: 8%;
+  width: 24%;
   transform: rotate(5deg);
   animation-delay: 1.4s;
 }
@@ -421,12 +421,12 @@ main {
   }
 
   /* 左列 */
-  .g-teapot { left: 0; top: 2%; width: 20%; transform: rotate(-6deg); }
+  .g-teapot { left: 0; top: 7%; width: 22%; transform: rotate(-6deg); }
   .g-heart { left: 0; top: 35%; width: 20%; transform: rotate(-9deg); }
   .g-piano { left: 0; top: 66%; width: 19%; transform: rotate(-4deg); }
 
   /* 右列 */
-  .g-pancakes { right: 0; top: 1%; width: 20%; transform: rotate(6deg); }
+  .g-pancakes { right: 0; top: 6%; width: 22%; transform: rotate(6deg); }
   .g-apple { right: 0; top: 35%; width: 20%; transform: rotate(8deg); }
   .g-coffee { right: 0; top: 66%; width: 20%; transform: rotate(4deg); }
 }
