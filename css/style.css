@@ -1250,13 +1250,13 @@ main {
 .paper-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 7px;
 }
 
 .paper-option {
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: 46px;
+  height: 46px;
   cursor: pointer;
 }
 
@@ -1455,12 +1455,44 @@ main {
   background-image: url("../assets/stickers/paper-mint.jpg");
 }
 
-.note-card--stars {
-  --tx: 14%;
-  --ty: 22%;
-  --bx: 14%;
-  --by: 22%;
-  background-image: url("../assets/stickers/paper-stars.jpg");
+.note-card--chick {
+  --tx: 19%;
+  --ty: 30%;
+  --bx: 19%;
+  --by: 25%;
+  background-image: url("../assets/stickers/paper-chick.jpg");
+}
+
+.note-card--whitebear {
+  --tx: 20%;
+  --ty: 29%;
+  --bx: 20%;
+  --by: 26%;
+  background-image: url("../assets/stickers/paper-whitebear.jpg");
+}
+
+.note-card--bear {
+  --tx: 19%;
+  --ty: 29%;
+  --bx: 19%;
+  --by: 26%;
+  background-image: url("../assets/stickers/paper-bear.jpg");
+}
+
+.note-card--peach {
+  --tx: 26%;
+  --ty: 32%;
+  --bx: 20%;
+  --by: 26%;
+  background-image: url("../assets/stickers/paper-peach.jpg");
+}
+
+.note-card--cloud {
+  --tx: 18%;
+  --ty: 27%;
+  --bx: 30%;
+  --by: 15%;
+  background-image: url("../assets/stickers/paper-cloud.jpg");
 }
 
 .note-card-body {
@@ -1694,7 +1726,7 @@ main {
     background-color: #fdf9e6;
   }
   .notes-sheet { padding: 22px 14px 16px; }
-  .paper-option { width: 46px; height: 46px; }
+  .paper-option { width: 44px; height: 44px; }
   .note-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
   .note-card-text { font-size: 12px; }
 

@@ -180,7 +180,7 @@
     const saveBtn = form ? form.querySelector(".note-save") : null;
     if (!form || !wall || !text) return;
 
-    const PAPERS = ["coffee", "toast", "cake", "mint", "stars"];
+    const PAPERS = ["coffee", "toast", "cake", "mint", "chick", "whitebear", "bear", "peach", "cloud"];
     const LOCAL_KEY = "portfolio-notes-v2";
     const PAPER_KEY = "portfolio-note-paper";
     const cloudOn = Boolean(CLOUD.url && CLOUD.key);
