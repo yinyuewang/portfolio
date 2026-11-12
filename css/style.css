@@ -22,6 +22,7 @@ body {
   background: radial-gradient(circle at 85% 12%, #ffffff 0%, var(--bg) 42%, #f6f5f1 100%);
   color: var(--ink);
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 img {
@@ -272,122 +273,285 @@ main {
 }
 
 /* ============================================================
-   可点击入口卡片
+   时钟：三个板块作为表盘上的物品
    ============================================================ */
-.entry-section {
-  margin-bottom: 28px;
-  perspective: 1000px;
-}
-
-.entry-card {
+.clock-section {
   display: flex;
-  align-items: center;
-  gap: 34px;
-  padding: 34px 38px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(var(--ex, 0px), 0, 0)
-    rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition:
-    transform 380ms cubic-bezier(0.18, 0.9, 0.22, 1),
-    box-shadow 380ms ease,
-    border-color 300ms ease;
+  justify-content: center;
+  padding: 8px 0 52px;
+  overflow-x: clip;
 }
 
-.entry-card::before {
-  content: "";
+/* 舞台：表盘居中，水彩插画环绕 */
+.clock-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: min(940px, 100%);
+}
+
+.clock-gallery {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #f7eef4 0%, transparent 62%);
-  opacity: 0;
-  transition: opacity 360ms ease;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.entry-card:hover {
-  --ex: 10px;
-  box-shadow: 0 20px 42px rgba(12, 10, 8, 0.12);
-  border-color: #e6d9e2;
+.gallery-img {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 18px rgba(120, 110, 110, 0.16));
+  animation: deco-float 9s ease-in-out infinite;
 }
 
-.entry-card:hover::before {
-  opacity: 1;
+.g-teapot {
+  left: 3%;
+  top: 5%;
+  width: 22%;
+  transform: rotate(-5deg);
+  animation-delay: 0.2s;
 }
 
-.entry-card:hover .entry-arrow {
-  transform: translateX(10px);
+.g-pancakes {
+  right: 3%;
+  top: 4%;
+  width: 22%;
+  transform: rotate(5deg);
+  animation-delay: 1.4s;
 }
 
-.entry-left {
+.g-heart {
+  left: 1%;
+  top: 34%;
+  width: 23%;
+  transform: rotate(-9deg);
+  animation-delay: 0.8s;
+}
+
+.g-apple {
+  right: 1%;
+  top: 34%;
+  width: 22%;
+  transform: rotate(8deg);
+  animation-delay: 2s;
+}
+
+.g-piano {
+  left: 4%;
+  top: 67%;
+  width: 19%;
+  transform: rotate(-4deg);
+  animation-delay: 1.8s;
+}
+
+.g-coffee {
+  right: 4%;
+  top: 69%;
+  width: 22%;
+  transform: rotate(4deg);
+  animation-delay: 0.4s;
+}
+
+.clock-wrap {
+  position: relative;
+  width: min(520px, 86vw);
+  aspect-ratio: 538 / 747;
+  animation: clock-float 7s ease-in-out infinite;
+}
+
+@keyframes clock-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* 表盘：图片本身即表盘，白底已抠掉 */
+.clock-dial {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 16px 24px rgba(120, 150, 140, 0.2));
+}
+
+@keyframes deco-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+/* 窄屏：插画改为表盘下方一条小图排 */
+@media (max-width: 899px) {
+  .clock-stage {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .clock-gallery {
+    position: static;
+    order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .gallery-img {
+    position: static;
+    width: 15.5%;
+    height: auto;
+    margin: 0 -1.2%;
+    filter: drop-shadow(0 6px 10px rgba(120, 110, 110, 0.14));
+  }
+
+  .g-teapot { transform: rotate(-5deg); }
+  .g-pancakes { transform: rotate(5deg); }
+  .g-heart { transform: rotate(-8deg); }
+  .g-apple { transform: rotate(7deg); }
+  .g-piano { transform: rotate(-3deg); }
+  .g-coffee { transform: rotate(4deg); }
+}
+
+/* 枝桠指针：抠出的手臂图片，transform-origin 指向轴心 (270,468) */
+.clock-hand {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  will-change: transform;
+  filter: drop-shadow(0 2px 3px rgba(90, 80, 60, 0.18));
+}
+
+/* 时针（左枝）：缩到 66%，轴心固定在 (270,468) */
+.hand-hour {
+  left: 36.0787%;
+  top: 54.8737%;
+  width: 16.8067%;
+  height: auto;
+  transform-origin: 83.9416% 73.3333%;
+}
+
+/* 分针（右枝）：缩到 62%，轴心固定在 (270,468) */
+.hand-minute {
+  left: 47.7657%;
+  top: 52.9398%;
+  width: 22.9331%;
+  height: auto;
+  transform-origin: 10.5528% 75%;
+}
+
+/* 轴心盖：hub.png 36x36，中心对齐 (270,468) */
+.clock-hub {
+  position: absolute;
+  left: 50.1859%;
+  top: 62.6506%;
+  width: 6.6914%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* 表盘上的可点击物品 */
+.clock-item {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  flex-shrink: 0;
-  z-index: 1;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
-.entry-num {
+.clock-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 7px 11px rgba(90, 120, 112, 0.24));
+  transition:
+    transform 420ms cubic-bezier(0.18, 0.9, 0.22, 1),
+    filter 420ms ease;
+}
+
+.item-skills,
+.item-works {
+  width: 28%;
+}
+
+.item-life {
+  width: 29%;
+}
+
+.item-notes {
+  width: 25%;
+}
+
+.item-skills {
+  left: 21.5%;
+  top: 57%;
+}
+
+.item-works {
+  left: 78.5%;
+  top: 57%;
+}
+
+.item-life {
+  left: 50%;
+  top: 86%;
+}
+
+.item-notes {
+  left: 50%;
+  top: 31%;
+}
+
+.item-label {
   font-family: "Special Elite", serif;
-  font-size: 40px;
+  font-size: 14px;
   line-height: 1;
+  letter-spacing: 2.4px;
+  color: #2f2d2b;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.entry-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: var(--muted);
+.clock-item:hover img {
+  transform: translateY(-7px) scale(1.1) rotate(-3deg);
+  filter: drop-shadow(0 15px 20px rgba(90, 120, 112, 0.3));
 }
 
-.entry-mid {
-  flex: 1;
-  z-index: 1;
+.clock-item:active img {
+  transform: scale(0.95);
 }
 
-.entry-title {
-  font-family: "Special Elite", serif;
-  font-size: clamp(22px, 3vw, 30px);
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-
-.entry-desc {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.entry-right {
-  z-index: 1;
-}
-
-.entry-arrow {
-  display: inline-block;
-  font-size: 26px;
-  transition: transform 380ms cubic-bezier(0.18, 0.9, 0.22, 1);
-}
-
-/* 深色胶卷入口 */
-.entry-card--film {
-  background: #161616;
-  border-color: #2a2a2a;
-  color: #f0e6d8;
-}
-
-.entry-card--film::before {
-  background: linear-gradient(120deg, rgba(255, 200, 150, 0.12) 0%, transparent 62%);
-}
-
-.entry-card--film:hover {
-  border-color: #4a3a2a;
-  box-shadow: 0 20px 46px rgba(0, 0, 0, 0.4);
-}
-
-.entry-card--film .entry-tag,
-.entry-card--film .entry-desc {
-  color: #9c9083;
+.clock-item:focus-visible img {
+  outline: 2px dashed #2f2d2b;
+  outline-offset: 6px;
 }
 
 /* ============================================================
@@ -719,21 +883,6 @@ main {
   color: #8a6a2a;
 }
 
-/* 竞赛作品完整图片 */
-.work-showcase {
-  margin-top: 18px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.work-showcase img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .past-link {
   display: inline-block;
   margin-top: 9px;
@@ -983,6 +1132,440 @@ main {
 }
 
 /* ============================================================
+   个人生活照弹层
+   ============================================================ */
+.modal-panel--life {
+  width: min(880px, 94vw);
+}
+
+.life-wall {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 22px;
+  padding: 4px 2px 10px;
+}
+
+.life-shot {
+  margin: 0;
+  padding: 9px 9px 26px;
+  background: #fff;
+  border-radius: 3px;
+  box-shadow: 0 10px 22px rgba(12, 10, 8, 0.11);
+  transform: rotate(var(--r, 0deg));
+  transition:
+    transform 380ms cubic-bezier(0.18, 0.9, 0.22, 1),
+    box-shadow 380ms ease;
+}
+
+.life-shot img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #f0eeea;
+}
+
+.life-shot:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.04);
+  box-shadow: 0 20px 34px rgba(12, 10, 8, 0.17);
+}
+
+/* ============================================================
+   留言本弹层
+   ============================================================ */
+@font-face {
+  font-family: "Smiley Sans";
+  src: url("../assets/fonts/SmileySans-Oblique.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.modal-panel--notes {
+  --note-font: "Smiley Sans", "SmileySans-Oblique", "Yuanti SC", "YouYuan", "幼圆",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  width: min(600px, 94vw);
+  aspect-ratio: 1080 / 1516;
+  padding: 96px 30px 96px;
+  background-image: url("../assets/stickers/notes-bg.jpg?v=2");
+  background-size: cover;
+  background-position: center top;
+  border-radius: 24px;
+  font-family: var(--note-font);
+}
+
+.modal-panel--notes .modal-close {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.modal-panel--notes .modal-title {
+  font-family: var(--note-font);
+  letter-spacing: 1px;
+}
+
+.modal-panel--notes .modal-sub {
+  font-family: var(--note-font);
+  letter-spacing: 0.4px;
+}
+
+.notes-sheet {
+  padding: 26px 26px 18px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(3px);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(90, 70, 80, 0.14);
+}
+
+.notes-sheet .modal-head {
+  margin-bottom: 20px;
+}
+
+.note-form {
+  margin: 0;
+}
+
+/* 便签纸选择 */
+.paper-picker {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+
+.note-label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--note-font);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #8d7a6b;
+}
+
+.paper-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.paper-option {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.paper-option input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.paper-option img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 10px rgba(120, 100, 90, 0.16);
+  opacity: 0.7;
+  transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+.paper-option:hover img {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.paper-option input:checked + img {
+  opacity: 1;
+  border-color: #f2a7c3;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px rgba(242, 167, 195, 0.34), 0 6px 12px rgba(120, 100, 90, 0.18);
+}
+
+.paper-option input:focus-visible + img {
+  outline: 2px solid #d98cae;
+  outline-offset: 2px;
+}
+
+.note-text {
+  display: block;
+  width: 100%;
+  min-height: 92px;
+  padding: 14px 16px;
+  border: 1.5px dashed #e2c6d3;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: var(--note-font);
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink);
+  resize: vertical;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.note-text:focus {
+  border-color: #d98cae;
+  box-shadow: 0 0 0 4px rgba(240, 169, 196, 0.16);
+}
+
+.note-form-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.note-name {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 18px;
+  border: 1.5px dashed #e2c6d3;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  font-family: var(--note-font);
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.note-name:focus {
+  border-color: #d98cae;
+}
+
+.note-save {
+  flex-shrink: 0;
+  padding: 11px 26px;
+  border: none;
+  border-radius: 999px;
+  background: #f3a9c4;
+  color: #fff;
+  font-family: var(--note-font);
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(240, 150, 180, 0.32);
+  transition: background 200ms ease, transform 200ms ease;
+}
+
+.note-save:hover {
+  background: #ef94b7;
+  transform: translateY(-2px);
+}
+
+.note-save:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.note-hint {
+  margin-top: 10px;
+  font-family: var(--note-font);
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+}
+
+.note-status {
+  margin-top: 8px;
+  font-family: var(--note-font);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: #b06b82;
+}
+
+.note-status[hidden] {
+  display: none;
+}
+
+/* 便签墙：每张便签用所选的手绘纸做底 */
+.note-wall {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 14px;
+  margin-top: 18px;
+}
+
+.note-wall:empty {
+  margin-top: 0;
+}
+
+.note-card {
+  --tx: 15%;
+  --ty: 17%;
+  --bx: 15%;
+  --by: 13%;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 8px 18px rgba(90, 80, 70, 0.16);
+  transform: rotate(-1.1deg);
+}
+
+.note-card:nth-child(3n + 2) {
+  transform: rotate(1.2deg);
+}
+
+.note-card:nth-child(3n) {
+  transform: rotate(-1.8deg);
+}
+
+.note-card--coffee {
+  --tx: 24%;
+  --ty: 50%;
+  --bx: 19%;
+  --by: 8%;
+  background-image: url("../assets/stickers/paper-coffee.jpg");
+}
+
+.note-card--toast {
+  --tx: 25%;
+  --ty: 46%;
+  --bx: 24%;
+  --by: 15%;
+  background-image: url("../assets/stickers/paper-toast.jpg");
+}
+
+.note-card--cake {
+  --tx: 12%;
+  --ty: 38%;
+  --bx: 12%;
+  --by: 9%;
+  background-image: url("../assets/stickers/paper-cake.jpg");
+}
+
+.note-card--mint {
+  --tx: 31%;
+  --ty: 15%;
+  --bx: 27%;
+  --by: 44%;
+  background-image: url("../assets/stickers/paper-mint.jpg");
+}
+
+.note-card--stars {
+  --tx: 14%;
+  --ty: 22%;
+  --bx: 14%;
+  --by: 22%;
+  background-image: url("../assets/stickers/paper-stars.jpg");
+}
+
+.note-card-body {
+  position: absolute;
+  inset: var(--ty) var(--bx) var(--by) var(--tx);
+  display: flex;
+  flex-direction: column;
+}
+
+.note-card-text {
+  margin: 0;
+  font-family: var(--note-font);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: #6b5544;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.note-card-text.is-long {
+  font-size: 12px;
+}
+
+.note-card--coffee .note-card-text.is-long {
+  font-size: 11.5px;
+}
+
+.note-card--mint .note-card-text {
+  font-size: 12px;
+}
+
+.note-card-meta {
+  margin: auto 0 0;
+  padding-top: 6px;
+  font-family: var(--note-font);
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  color: rgba(96, 74, 58, 0.72);
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.note-del {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #b26b7f;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14);
+}
+
+.note-wall.is-admin .note-del {
+  display: block;
+}
+
+.note-empty {
+  margin: 20px 0 4px;
+  font-family: var(--note-font);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.note-empty[hidden] {
+  display: none;
+}
+
+.notes-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(160, 140, 125, 0.3);
+}
+
+.notes-count {
+  font-family: var(--note-font);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: #9b8a7c;
+}
+
+.notes-admin {
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-family: var(--note-font);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #c2aebb;
+  cursor: pointer;
+  transition: color 200ms ease, background 200ms ease;
+}
+
+.notes-admin:hover {
+  color: #b06b82;
+  background: rgba(242, 167, 195, 0.16);
+}
+
+/* ============================================================
    入场动画
    ============================================================ */
 .reveal {
@@ -994,8 +1577,7 @@ main {
 .keywords .kw-row:nth-child(1) { animation-delay: 160ms; }
 .keywords .kw-row:nth-child(2) { animation-delay: 260ms; }
 
-.entry-section:nth-of-type(3) { animation-delay: 340ms; }
-.entry-section:nth-of-type(4) { animation-delay: 420ms; }
+.clock-section { animation-delay: 340ms; }
 
 @keyframes rise {
   to {
@@ -1086,10 +1668,27 @@ main {
 
   .kw-pink { width: 56px; height: 92px; }
 
-  .entry-card {
-    padding: 24px 22px;
-    gap: 18px;
+  .clock-wrap { width: min(430px, 92vw); }
+  .item-label { font-size: 11px; letter-spacing: 1.2px; }
+
+  .life-wall { grid-template-columns: repeat(2, 1fr); gap: 18px 16px; }
+
+  .modal-panel--notes {
+    width: 94vw;
+    aspect-ratio: auto;
+    padding: 58px 10px 10px;
+    background-image:
+      linear-gradient(to bottom, rgba(253, 249, 230, 0) 56%, #fdf9e6 92%),
+      url("../assets/stickers/notes-bg.jpg?v=2");
+    background-size: 100% 100%, 100% auto;
+    background-position: top center, top center;
+    background-repeat: no-repeat, no-repeat;
+    background-color: #fdf9e6;
   }
+  .notes-sheet { padding: 22px 14px 16px; }
+  .paper-option { width: 46px; height: 46px; }
+  .note-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 12px; }
+  .note-card-text { font-size: 12px; }
 
   .modal-content { padding: 36px 20px 42px; }
 

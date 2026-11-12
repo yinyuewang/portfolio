@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
@@ -6,8 +6,8 @@
   <title>My Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;600&family=Special+Elite&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=14" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;600&family=Special+Elite&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=32" />
 </head>
 <body>
   <header class="top-bar">
@@ -21,8 +21,10 @@
     <section id="home" class="hero">
       <nav class="side-nav">
         <a href="#home" class="side-link is-active"><span>HOME</span><em>主页</em></a>
-        <a href="#skills" class="side-link"><span>SKILLS</span><em>能力</em></a>
-        <a href="#works" class="side-link"><span>WORKS</span><em>作品集</em></a>
+        <a href="#clock" class="side-link" data-modal="skillsModal"><span>SKILLS</span><em>能力</em></a>
+        <a href="#clock" class="side-link" data-modal="worksModal"><span>WORKS</span><em>作品集</em></a>
+        <a href="#clock" class="side-link" data-modal="lifeModal"><span>LIFE</span><em>生活</em></a>
+        <a href="#clock" class="side-link" data-modal="notesModal"><span>NOTES</span><em>留言</em></a>
         <p class="side-music">&#9836;</p>
       </nav>
 
@@ -55,36 +57,48 @@
       </article>
     </section>
 
-    <!-- ============ 个人能力入口（点击打开弹层） ============ -->
-    <section id="skills" class="entry-section reveal">
-      <div class="entry-card" data-modal="skillsModal" data-interactive>
-        <div class="entry-left">
-          <span class="entry-num">01</span>
-          <span class="entry-tag">SKILLS</span>
+    <!-- ============ 时钟：三个板块作为表盘上的物品 ============ -->
+    <section id="clock" class="clock-section reveal">
+      <div class="clock-stage">
+        <!-- 水彩插画：围绕表盘排布 -->
+        <div class="clock-gallery" aria-hidden="true">
+          <img class="gallery-img g-teapot" src="assets/stickers/deco-teapot.png" alt="" />
+          <img class="gallery-img g-pancakes" src="assets/stickers/deco-pancakes.png" alt="" />
+          <img class="gallery-img g-heart" src="assets/stickers/deco-heart.png" alt="" />
+          <img class="gallery-img g-apple" src="assets/stickers/deco-apple.png" alt="" />
+          <img class="gallery-img g-piano" src="assets/stickers/deco-piano.png" alt="" />
+          <img class="gallery-img g-coffee" src="assets/stickers/deco-coffee.png" alt="" />
         </div>
-        <div class="entry-mid">
-          <h3 class="entry-title">个人能力展示</h3>
-          <p class="entry-desc">简历 · 技能 · 过往项目 · 经历</p>
-        </div>
-        <div class="entry-right">
-          <span class="entry-arrow">→</span>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ 摄影作品入口（点击打开弹层） ============ -->
-    <section id="works" class="entry-section reveal">
-      <div class="entry-card entry-card--film" data-modal="worksModal" data-interactive>
-        <div class="entry-left">
-          <span class="entry-num">02</span>
-          <span class="entry-tag">WORKS</span>
-        </div>
-        <div class="entry-mid">
-          <h3 class="entry-title">摄影作品 · 胶卷集</h3>
-          <p class="entry-desc">Film Photography · 35mm</p>
-        </div>
-        <div class="entry-right">
-          <span class="entry-arrow">→</span>
+        <div class="clock-wrap">
+          <!-- 表盘：去掉枝桠的干净水彩图 -->
+          <img class="clock-dial" src="assets/stickers/dial-clean.png" alt="钟表表盘" />
+
+          <!-- 枝桠指针：原图抠出的两条手臂，绕轴心 (270,468) 转动 -->
+          <img class="clock-hand hand-hour" src="assets/stickers/hand-hour.png" alt="" />
+          <img class="clock-hand hand-minute" src="assets/stickers/hand-minute.png" alt="" />
+          <img class="clock-hub" src="assets/stickers/hub.png" alt="" />
+
+          <!-- 三个可点击物品（透明底图标） -->
+          <button class="clock-item item-skills" data-modal="skillsModal" aria-label="打开个人能力展示">
+            <img src="assets/stickers/clock-skills.png" alt="" />
+            <span class="item-label">SKILLS</span>
+          </button>
+
+          <button class="clock-item item-works" data-modal="worksModal" aria-label="打开摄影作品">
+            <img src="assets/stickers/clock-works.png" alt="" />
+            <span class="item-label">WORKS</span>
+          </button>
+
+          <button class="clock-item item-life" data-modal="lifeModal" aria-label="打开个人生活照">
+            <img src="assets/stickers/clock-life.png" alt="" />
+            <span class="item-label">LIFE</span>
+          </button>
+
+          <button class="clock-item item-notes" data-modal="notesModal" aria-label="给我留言">
+            <img src="assets/stickers/clock-notes.png" alt="" />
+            <span class="item-label">NOTES</span>
+          </button>
         </div>
       </div>
     </section>
@@ -137,16 +151,8 @@
               <div class="skill-bar"><span class="skill-fill" data-width="90"></span></div>
             </div>
             <div class="skill-item">
-              <div class="skill-name"><span>机器学习 / 深度学习</span><span class="skill-pct">85%</span></div>
-              <div class="skill-bar"><span class="skill-fill" data-width="85"></span></div>
-            </div>
-            <div class="skill-item">
               <div class="skill-name"><span>数据可视化</span><span class="skill-pct">86%</span></div>
               <div class="skill-bar"><span class="skill-fill" data-width="86"></span></div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><span>学术写作</span><span class="skill-pct">84%</span></div>
-              <div class="skill-bar"><span class="skill-fill" data-width="84"></span></div>
             </div>
           </div>
 
@@ -221,11 +227,6 @@
               </div>
             </article>
           </div>
-
-          <!-- 竞赛作品：仅展示完整图片 -->
-          <div class="work-showcase">
-            <img src="assets/work/page01.jpg" alt="竞赛作品《真人 or 虚拟，谁才是社交媒体 Superstar？》" />
-          </div>
         </div>
 
         <!-- 学生工作 -->
@@ -286,10 +287,6 @@
             <li>
               <span class="award-level award-level--honor">奖学金</span>
               <div class="award-body"><strong>社会工作与志愿服务奖学金</strong><p>2023 — 2024 学年</p></div>
-            </li>
-            <li>
-              <span class="award-level award-level--honor">荣誉称号</span>
-              <div class="award-body"><strong>光华学子贡献奖</strong><p>2024 — 2025 学年</p></div>
             </li>
             <li>
               <span class="award-level award-level--honor">荣誉称号</span>
@@ -380,8 +377,8 @@
       <div class="modal-content">
         <header class="modal-head modal-head--light">
           <span class="modal-kicker">02 / WORKS</span>
-          <h2 class="modal-title">摄影作品 · 胶卷集</h2>
-          <p class="modal-sub">Shot on 35mm film · 照片存放于 assets/photography/</p>
+          <h2 class="modal-title">胶卷集</h2>
+          <p class="modal-sub">Shot on 35mm film</p>
         </header>
 
         <!-- 横向滚动的胶卷：把照片放进 assets/photography/photo01.jpg ~ photo10.jpg 即可替换 -->
@@ -389,43 +386,43 @@
           <div class="film-row">
             <figure class="film-frame">
               <img src="assets/photography/photo01.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=deer%20in%20misty%20forest%2C%2035mm%20film%20photography%2C%20soft%20natural%20light%2C%20film%20grain%2C%20muted%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 01" />
-              <span class="film-date">2026.03 · 14:20</span>
+              <span class="film-date">2026.11 · 成都</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo02.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=forest%20path%20with%20sunlight%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20muted%20green%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 02" />
-              <span class="film-date">2026.02 · 16:05</span>
+              <span class="film-date">2026.10 · 北京</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo03.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=car%20interior%20view%20of%20mountain%20road%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 03" />
-              <span class="film-date">2026.01 · 17:45</span>
+              <span class="film-date">2025.10 · 荔波</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo04.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=green%20hills%20and%20blue%20sky%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20light%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 04" />
-              <span class="film-date">2025.12 · 09:10</span>
+              <span class="film-date">2024.10 · 上海</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo05.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=misty%20lake%20and%20mountains%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20muted%20blue%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 05" />
-              <span class="film-date">2025.11 · 15:30</span>
+              <span class="film-date">2024.10 · 杭州</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo06.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=old%20town%20alley%20with%20stone%20wall%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 06" />
-              <span class="film-date">2025.10 · 11:05</span>
+              <span class="film-date">2025.07 · 泉州</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo07.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ocean%20waves%20from%20above%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20blue%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 07" />
-              <span class="film-date">2025.08 · 10:00</span>
+              <span class="film-date">2026.07 · 厦门</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo08.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=city%20street%20at%20golden%20hour%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20warm%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 08" />
-              <span class="film-date">2025.06 · 17:45</span>
+              <span class="film-date">2025.04 · 青岛</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo09.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cherry%20blossom%20tree%20against%20sky%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20pink%20tones%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 09" />
-              <span class="film-date">2025.04 · 10:00</span>
+              <span class="film-date">2025.08 · 沈阳</span>
             </figure>
             <figure class="film-frame">
               <img src="assets/photography/photo10.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=field%20of%20wildflowers%2C%2035mm%20film%20photography%2C%20film%20grain%2C%20soft%20light%2C%20analog%20aesthetic&image_size=landscape_4_3" alt="摄影作品 10" />
-              <span class="film-date">2025.03 · 08:30</span>
+              <span class="film-date">2025.06 · 成都</span>
             </figure>
           </div>
         </div>
@@ -439,6 +436,132 @@
     </div>
   </div>
 
-  <script src="js/script.js?v=14"></script>
+  <!-- ============================================================
+       弹层 3：个人生活照
+       ============================================================ -->
+  <div class="modal" id="lifeModal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-panel modal-panel--life" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="关闭">&#10005;</button>
+
+      <div class="modal-content">
+        <header class="modal-head">
+          <span class="modal-kicker">03 / LIFE</span>
+          <h2 class="modal-title">生活照</h2>
+        </header>
+
+        <!-- 拍立得相片墙：把照片放进 assets/life/life01.jpg ~ life09.jpg 即可替换 -->
+        <div class="life-wall">
+          <figure class="life-shot" style="--r: -3deg">
+            <img src="assets/life/life01.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cozy%20cafe%20table%20with%20latte%20and%20open%20notebook%2C%20warm%20afternoon%20light%2C%20soft%20film%20tones&image_size=portrait_4_3" alt="生活照 01" />
+          </figure>
+          <figure class="life-shot" style="--r: 2deg">
+            <img src="assets/life/life02.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=cat%20sleeping%20on%20sunlit%20windowsill%2C%20soft%20pastel%20tones%2C%20film%20photography&image_size=portrait_4_3" alt="生活照 02" />
+          </figure>
+          <figure class="life-shot" style="--r: -1.5deg">
+            <img src="assets/life/life03.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=bunch%20of%20pastel%20flowers%20on%20wooden%20desk%2C%20soft%20natural%20light%2C%20film%20tones&image_size=portrait_4_3" alt="生活照 03" />
+          </figure>
+          <figure class="life-shot" style="--r: 3deg">
+            <img src="assets/life/life04.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=picnic%20blanket%20with%20sandwiches%20and%20fruit%20in%20a%20park%2C%20sunny%20day%2C%20film%20photography&image_size=portrait_4_3" alt="生活照 04" />
+          </figure>
+          <figure class="life-shot" style="--r: -2deg">
+            <img src="assets/life/life05.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=city%20skyline%20at%20sunset%20from%20a%20rooftop%2C%20warm%20orange%20sky%2C%20film%20grain&image_size=portrait_4_3" alt="生活照 05" />
+          </figure>
+          <figure class="life-shot" style="--r: 1.5deg">
+            <img src="assets/life/life06.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=rain%20on%20window%20with%20bokeh%20city%20lights%2C%20moody%20blue%20tones%2C%20film%20photography&image_size=portrait_4_3" alt="生活照 06" />
+          </figure>
+          <figure class="life-shot" style="--r: -3.5deg">
+            <img src="assets/life/life07.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=stack%20of%20books%20and%20a%20cup%20of%20tea%20on%20a%20bed%2C%20cozy%20morning%20light%2C%20film%20tones&image_size=portrait_4_3" alt="生活照 07" />
+          </figure>
+          <figure class="life-shot" style="--r: 2.5deg">
+            <img src="assets/life/life08.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=brunch%20plate%20with%20toast%20and%20berries%2C%20bright%20cafe%2C%20soft%20pastel%20film%20tones&image_size=portrait_4_3" alt="生活照 08" />
+          </figure>
+          <figure class="life-shot" style="--r: -1deg">
+            <img src="assets/life/life09.jpg" data-fallback="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=ferris%20wheel%20against%20pastel%20evening%20sky%2C%20fairground%20lights%2C%20film%20photography&image_size=portrait_4_3" alt="生活照 09" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       弹层 4：留言本
+       ============================================================ -->
+  <div class="modal" id="notesModal" aria-hidden="true">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-panel modal-panel--notes" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="关闭">&#10005;</button>
+
+      <div class="notes-sheet">
+        <header class="modal-head">
+          <span class="modal-kicker">04 / NOTES</span>
+          <h2 class="modal-title">给我留句话</h2>
+          <p class="modal-sub">挑一张喜欢的纸，写下想对我说的话</p>
+        </header>
+
+        <form class="note-form" id="noteForm">
+          <fieldset class="paper-picker">
+            <legend class="note-label">选一张纸</legend>
+            <div class="paper-list">
+              <label class="paper-option">
+                <input type="radio" name="notePaper" value="coffee" checked />
+                <img src="assets/stickers/paper-coffee.jpg" alt="咖啡杯便签纸" />
+              </label>
+              <label class="paper-option">
+                <input type="radio" name="notePaper" value="toast" />
+                <img src="assets/stickers/paper-toast.jpg" alt="吐司便签纸" />
+              </label>
+              <label class="paper-option">
+                <input type="radio" name="notePaper" value="cake" />
+                <img src="assets/stickers/paper-cake.jpg" alt="草莓蛋糕便签纸" />
+              </label>
+              <label class="paper-option">
+                <input type="radio" name="notePaper" value="mint" />
+                <img src="assets/stickers/paper-mint.jpg" alt="薄荷甜点便签纸" />
+              </label>
+              <label class="paper-option">
+                <input type="radio" name="notePaper" value="stars" />
+                <img src="assets/stickers/paper-stars.jpg" alt="星星便签纸" />
+              </label>
+            </div>
+          </fieldset>
+
+          <textarea
+            class="note-text"
+            id="noteText"
+            maxlength="40"
+            required
+            placeholder="今天想对我说点什么…"
+            aria-label="留言内容"
+          ></textarea>
+          <div class="note-form-row">
+            <input
+              class="note-name"
+              id="noteName"
+              type="text"
+              maxlength="12"
+              placeholder="你的名字（可不填）"
+              aria-label="你的名字"
+            />
+            <button class="note-save" type="submit">贴上去</button>
+          </div>
+          <p class="note-hint">最多 40 字 · 贴上去之后就会一直留在这里</p>
+          <p class="note-status" id="noteStatus" role="status" hidden></p>
+        </form>
+
+        <div class="note-wall" id="noteWall"></div>
+        <p class="note-empty" id="noteEmpty">还没有留言，来贴第一张吧。</p>
+
+        <footer class="notes-foot">
+          <span class="notes-count" id="noteCount"></span>
+          <button class="notes-admin" id="noteAdminBtn" type="button">管理</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js?v=33"></script>
 </body>
 </html>
+
+
